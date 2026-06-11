@@ -1,5 +1,9 @@
 @echo off
-chcp 65001 > nul  :: 强制命令行使用UTF-8编码，解决中文乱码问题
+rem 强制设置为UTF-8编码，并切换到支持UTF-8的Consolas字体
+chcp 65001 > nul
+reg add "HKCU\Console" /v "CodePage" /t REG_DWORD /d 65001 /f > nul
+reg add "HKCU\Console" /v "FaceName" /t REG_SZ /d "Consolas" /f > nul
+
 cd /d "%~dp0"
 
 echo 正在同步文件到 Gitee + GitHub...
